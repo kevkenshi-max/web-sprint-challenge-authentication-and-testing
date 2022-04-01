@@ -9,14 +9,7 @@ const findBy = (filter) => {
 };
 
 const findById = async (id) => {
-  const user = await db("users").where("id", id).first();
-
-  const result = {
-    id: user.id,
-    username: user.username,
-    password: user.password,
-  };
-  return result;
+  return await db("users").select("username", "password").where("id", id).first();
 };
 
 const add = async (user) => {
