@@ -57,8 +57,7 @@ router.post(
   checkReqBody,
   checkUsernameExist,
   (req, res, next) => {
-    const { password } = req.body;
-    if (bcrypt.compareSync(password, req.user.password)) {
+    if (bcrypt.compareSync(req.body.password, req.user.password)) {
       const token = buildToken(req.user);
       res.status(200).json({
         message: `welcome, ${req.user.username}`,
